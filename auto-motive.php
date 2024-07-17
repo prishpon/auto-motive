@@ -101,7 +101,7 @@ function display_car_review_meta_box() {
     <?php
 }
 
-//query post CPT cars to chack is their similar id in database
+//query post CPT cars to check is their similar id in database
 function am_check_for_similar_meta_id(){
 
     $id_array_in_cpt = [];
@@ -122,3 +122,15 @@ function am_check_for_similar_meta_id(){
 return $id_array_in_cpt;
 
 }
+
+function am_query_garage_table(){
+    global $wpdb;
+    $table_name =  $wpdb->prefix . 'garage';
+    $results = $wpdb->get_results("SELECT * FROM $table_name");
+
+
+    return $results;
+}
+
+//var dump results
+// add_action('wp','am_query_garage_table');
