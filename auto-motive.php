@@ -100,3 +100,25 @@ function display_car_review_meta_box() {
     </table>
     <?php
 }
+
+//query post CPT cars to chack is their similar id in database
+function am_check_for_similar_meta_id(){
+
+    $id_array_in_cpt = [];
+
+    $args = [
+        'posts_per_page' => -1,
+        'post_type'      => 'auto'
+    ];
+
+    $query = new Query($args);
+
+    while($query->have_posts()){
+        $query->the_post();
+        $id_array_in_cpt[] = get_post_meta(get_the_ID(),'id',true);
+    }
+
+
+return $id_array_in_cpt;
+
+}
